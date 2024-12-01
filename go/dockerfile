@@ -1,0 +1,15 @@
+FROM golang:1.23.1
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod tidy
+
+# Copy the rest of the application code
+COPY . .
+
+# Expose port 8080
+EXPOSE 8080
+
+# Command to run the Go application
+CMD ["go", "run", "main.go"]
